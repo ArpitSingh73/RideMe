@@ -7,7 +7,7 @@ import gsap from "gsap";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { useEffect, useContext } from "react";
 import { SocketContext } from "../context/SocketContext";
-import { CaptainDataContext } from "../context/CapatainContext";
+import { CaptainDataContext } from "../context/CaptainContext";
 import axios from "axios";
 
 const CaptainHome = () => {
@@ -141,6 +141,7 @@ const CaptainHome = () => {
         className="fixed w-full h-screen z-10 bottom-0 translate-y-full bg-white px-3 py-10 pt-12"
       >
         <ConfirmRidePopUp
+          ride={ride}
           setConfirmRidePopupPanel={setConfirmRidePopupPanel}
           setRidePopupPanel={setRidePopupPanel}
         />

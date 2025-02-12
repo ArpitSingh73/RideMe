@@ -25,18 +25,18 @@ module.exports.getAddressCoordinate = async (address) => {
 };
 
 module.exports.getDistanceTime = async (origin, destination) => {
+  console.log(origin, destination);
   if (!origin || !destination) {
     throw new Error("Origin and destination are required");
   }
 
   const apiKey = process.env.GOOGLE_MAPS_API;
 
-  const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(
-    origin
-  )}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
+  const url = `https://maps.googleapis.com/maps/api/distancematrix/json?origins=${encodeURIComponent(origin)}&destinations=${encodeURIComponent(destination)}&key=${apiKey}`;
 
   try {
     const response = await axios.get(url);
+    console.log(response);
     if (response.data.status === "OK") {
       if (response.data.rows[0].elements[0].status === "ZERO_RESULTS") {
         throw new Error("No routes found");
@@ -64,6 +64,7 @@ module.exports.getAutoCompleteSuggestions = async (input) => {
 
   try {
     const response = await axios.get(url);
+    console.log(response);
     if (response.data.status === "OK") {
       return response.data.predictions
         .map((prediction) => prediction.description)
